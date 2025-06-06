@@ -185,11 +185,11 @@ Since the p-value is less than the 0.05 significance level we reject the null hy
 
 The second analysis compared `'monsterkillsownjungle'` and `'minionkills'`, and I sought to determine that the missingness of `'monsterkillsownjungle'` values doesn't depend on `'minionkills'`. The hypotheses tested were as follows:
 
-**Null Hypothesis**: the distribution of `'miniokills'` when `'monsterkillsownjungle'` is missing is the same as the distribution of league when `'monsterkillsownjungle'` is not missing.
+**Null Hypothesis**: the distribution of `'minionkills'` when `'monsterkillsownjungle'` is missing is the same as the distribution of league when `'monsterkillsownjungle'` is not missing.
 
 **Alt Hypothesis**: the distribution of `'league'` when `'monsterkillsownjungle'` is missing is NOT the same as the distribution of league when `'monsterkillsownjungle'` is not missing.
 
-After performing a permutation test calculating the KS statistic, the observed test statistic is **0.041330767154286824**, with a p-value of 0. The following plot shows the empirical distribution of the KS Statistic for the test.
+After performing a permutation test calculating the KS statistic, the observed test statistic is **0.041330767154286824**, with a p-value of 1. The following plot shows the empirical distribution of the KS Statistic for the test.
 
 <iframe
   src="assets/q3bplot.html"
@@ -201,9 +201,20 @@ After performing a permutation test calculating the KS statistic, the observed t
 Since the p-value is greater than the 0.05 significance level we fail to reject the null hypothesis. This means that `'monsterkillsownjungle'` doesn't depend on `'earnedgold'`.
 
 ## Hypothesis Testing
-In this section, I focused on analyzing the KDA statistic itself across tiers, and whether there is a correlation between the tier level and KDA. This hypothesis was fueled by a common assumption across levels within both sports and esports: 
+In this section, I focused on analyzing the KDA statistic itself across tiers, and whether there is a correlation between the tier level and KDA. This hypothesis was fueled by a common assumption across levels within both sports and esports: *as tier level increases, the disparities between team performance decrease as teams are more closer to each other in terms of skill level and performance*. Testing the KDA statistic with a hypothesis test will reveal whether this assumption holds true, and if tier level is a good indicator of overall team performance and skill level.
 
+**Null Hypothesis**: The difference in average normalized KDA for the best performing and worst performing teams within a given league tier does not decrease as league tier increases.
 
+**Alt Hypothesis**: The difference in average normalized KDA for the best performing and worst performing teams within a given league tier decreases as league tier increases.
+
+I analyzed this at the 0.05 significance level, and to measure correlation, the Spearman R statistic was used as the test statistic. To be able to measure the increase/decrease of league tier, the `'tier'` column was modified through an ordinal encoding function that assigned the following values to each tier: 
+
+| **Tier**      | **Assigned Value** |
+| ----------- | ----------- |
+| A      | 1      |
+| T3      | 2     |
+| T2      | 3      |
+| T1      | 4      |
 
 ## Framing a Prediction Problem
 
