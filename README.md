@@ -18,15 +18,15 @@ The dataset contains information spanning various game matches within the 2024 y
 
 | **Column**      | **Description** |
 | ----------- | ----------- |
-| 'gameid'      | unique identifier for each game played      |
-| 'league'   | the professional league a team belongs to/league tournament in which match happened        |
-| 'gamelength'      | the length of a game in minutes |
-| 'kills'      | the number of enemy champions a player or team eliminated in match |
-| 'deaths'      | the amount of times a player or team was elimated by enemy champions |
-| 'assists'      | the number of assists given to player or team (ie. when they helped eliminate enemy champion without getting kill recognition |
-| 'earnedgold'      | the amount of gold a player or team earns in match |
-| 'monsterkills'      | the amount of monsters a player or team eliminate in match |
-| 'monsterkillsownjungle'      | the amount of monsters elimated by player or team in their own jungle |
+| {{gameid}}      | unique identifier for each game played      |
+| {{league}}   | the professional league a team belongs to/league tournament in which match happened        |
+| {{gamelength}}      | the length of a game in minutes |
+| {{kills}}      | the number of enemy champions a player or team eliminated in match |
+| {{deaths}}      | the amount of times a player or team was elimated by enemy champions |
+| {{assists}}      | the number of assists given to player or team (ie. when they helped eliminate enemy champion without getting kill recognition |
+| {{earnedgold}}      | the amount of gold a player or team earns in match |
+| {{monsterkills}}      | the amount of monsters a player or team eliminate in match |
+| {{monsterkillsownjungle}}      | the amount of monsters elimated by player or team in their own jungle |
 
 ## Data Cleaning and Exploratory Data Analysis
 For convinence, only the 'gameid', 'league', 'gamelength', 'kills', 'deaths', 'assists', 'earnedgold', 'monsterkills', and 'monsterkillsownjungle' columns were kept. Further, to prevent double counting values for both players and teams in the KDA analysis, rows where 'position' was team (row was an aggregate of a team's performance for each player column) were filtered out. To assist in the permutation test this project and staying true to my central question, two columns were created: 'tier' and 'KDA'. 
