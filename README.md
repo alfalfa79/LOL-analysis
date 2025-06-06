@@ -14,7 +14,7 @@ In LoL, kills, deaths, and assists (KDA) is a significant statistic in measuring
 I will be focusing on answering the central question: **How effective is KDA as a measure of player and team performance in-game?**. While KDA itself is a good baseline metric, with other factors such as skill of an overall league, and other metrics of performance such as dpm, KDA's effectivenss as a metric might not capture all factors that could lead to a team winning/losing. In conjunction with the predictive model used, insights gained can be used to optimize team strategy and decision making, leading to consistent and positive performance across games.
 
 ### Column Overview
-The dataset contains information spanning various game matches within the 2024 year. In this dataset specifically, n amount of rows. The most relevant columns featured for my data analysis are explained below:
+The dataset contains information spanning various game matches within the 2024 year. In this dataset specifically, it contains 117648 amount of rows and 163 columns. The most relevant columns featured for my data analysis are explained below:
 
 | **Column**      | **Description** |
 | ----------- | ----------- |
@@ -35,13 +35,21 @@ For convinence, only the `'gameid'`, `'league'`, `'gamelength'`, `'kills'`, `'de
 
 `'tier'` was assigned to each team using a helper function based on official league and tournament information found on Wikipedia and the Internet. Any team that didn't have an associated league/tournament identifier was placed in Tier A, or the ameteur league for purposes of a fair data analysis.`'KDA'` was created by normalizing the kills, deaths, and assists columns and plugging those values into the KDA equation to get the normalized KDA across all players. The normalization was necessary due to factors like game length that can impact the values of the kills, deaths, and assists columns for longer game durations. To maintain simplicity, the normalized columns were dropped after creating the `'KDA'` column.
 
-The resulting dataframe has 11 columns and n rows.
-
-
 | **Column**      | **Description** |
 | ----------- | ----------- |
 | `'tier'`      | the skill level group a team is placed in, is used for tournament play      |
 | `'KDA'`   | the aggregate perfomance measured calculated using player kills, deaths, and assists        |
+
+The resulting dataframe has 13 columns and 90840 rows.
+
+| gameid             | teamname    | league   |   gamelength |   kills |   deaths |   assists |   monsterkills |   monsterkillsownjungle |     dpm |   earnedgold | tier   |       kda |
+|:-------------------|:------------|:---------|-------------:|--------:|---------:|----------:|---------------:|------------------------:|--------:|-------------:|:-------|----------:|
+| 10660-10660_game_1 | LNG Esports | DCup     |         1886 |       1 |        3 |         1 |             23 |                      16 | 225.62  |         6960 | A      | 132.461   |
+| 10660-10660_game_1 | LNG Esports | DCup     |         1886 |       0 |        4 |         3 |            139 |                     111 | 234.178 |         4513 | A      |  -4.00307 |
+| 10660-10660_game_1 | LNG Esports | DCup     |         1886 |       0 |        2 |         0 |              1 |                       1 | 318.293 |         6620 | A      |   5.02502 |
+| 10660-10660_game_1 | LNG Esports | DCup     |         1886 |       2 |        4 |         0 |              4 |                       0 | 346.511 |         8101 | A      |  -3.85904 |
+| 10660-10660_game_1 | LNG Esports | DCup     |         1886 |       0 |        3 |         3 |              0 |                       0 | 205.228 |         3098 | A      | 127.651   |
+
 
 
 I decided to perform a univariate analysis on player dpm.
