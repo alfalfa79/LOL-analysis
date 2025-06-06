@@ -27,9 +27,10 @@ The dataset contains information spanning various game matches within the 2024 y
 | `'earnedgold'`      | the amount of gold a player or team earns in match |
 | `'monsterkills'`      | the amount of monsters a player or team eliminate in match |
 | `'monsterkillsownjungle'`      | the amount of monsters elimated by player or team in their own jungle |
+| `'dpm'`      | the amount of damage per minute a player deals on average in game |
 
 ## Data Cleaning and Exploratory Data Analysis
-For convinence, only the 'gameid', 'league', 'gamelength', 'kills', 'deaths', 'assists', 'earnedgold', 'monsterkills', and 'monsterkillsownjungle' columns were kept. Further, to prevent double counting values for both players and teams in the KDA analysis, rows where 'position' was team (row was an aggregate of a team's performance for each player column) were filtered out. To assist in the permutation test this project and staying true to my central question, two columns were created: 'tier' and 'KDA'. 
+For convinence, only the `'gameid'`, `'league'`, `'gamelength'`, `'kills'`, `'deaths'`, `'assists'`, `'earnedgold'`, `'monsterkills'`, and `'monsterkillsownjungle'` columns were kept. Further, to prevent double counting values for both players and teams in the KDA analysis, rows where 'position' was team (row was an aggregate of a team's performance for each player column) were filtered out. To assist in the permutation test this project and staying true to my central question, two columns were created: 'tier' and 'KDA'. 
 
 `'tier'` was assigned to each team using a helper function based on official league and tournament information found on Wikipedia and the Internet. Any team that didn't have an associated league/tournament identifier was placed in Tier A, or the ameteur league for purposes of a fair data analysis.`'KDA'` was created by normalizing the kills, deaths, and assists columns and plugging those values into the KDA equation to get the normalized KDA across all players. The normalization was necessary due to factors like game length that can impact the values of the kills, deaths, and assists columns for longer game durations.
 
@@ -41,7 +42,9 @@ The resulting dataframe has 11 columns and n rows.
 | `'tier'`      | the skill level group a team is placed in, is used for tournament play      |
 | `'KDA'`   | the aggregate perfomance measured calculated using player kills, deaths, and assists        |
 
-I decided to perform 
+I decided to perform a univariate analysis on player dpm.
+
+I also decided to performa univariate analysis on player earned gold.
 
 ## Assessment of Missingness
 
