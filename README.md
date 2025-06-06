@@ -110,10 +110,25 @@ This section will focus on testing if the missingness of the `'monsterkillsownju
 
 First analysis compared `'monsterkillsownjungle'` and `'league'`, and I sought to find out whether or not 
 the missingness of `'monsterkillsownjungle'` values depending on league. The hypotheses tested were as follows:
+
 **Null Hypothesis**: the distribution of `'league'` when `'monsterkillsownjungle'` is missing is the same as the distribution of league when `'monsterkillsownjungle'` is not missing.
+
 **Alt Hypothesis**: the distribution of `'league'` when `'monsterkillsownjungle'` is missing is NOT the same as the distribution of league when `'monsterkillsownjungle'` is not missing.
 
 The table displays the distribution of `'league'` when `'monsterkillsownjungle'` is missing vs not missing.
+
+gameid	datacompleteness	url	league	...	norm_kills	norm_deaths	norm_assists	kda
+0	LOLTMNT03_179647	complete	NaN	LFL2	...	-0.68	-0.55	-0.78	2.65
+1	LOLTMNT03_179647	complete	NaN	LFL2	...	-0.84	-0.39	-0.78	4.14
+2	LOLTMNT03_179647	complete	NaN	LFL2	...	-0.68	-0.55	-0.85	2.78
+...	...	...	...	...	...	...	...	...	...
+62133	LOLTMNT06_121570	complete	NaN	LIT	...	-0.68	-0.71	0.05	0.89
+62134	LOLTMNT06_121570	complete	NaN	LIT	...	-0.06	2.19	-0.02	-0.04
+62135	LOLTMNT06_121570	complete	NaN	LIT	...	1.95	-0.07	1.85	-54.87
+62136 rows × 166 columns
+
+
+
 | league          |   mkills_missing = True |   mkills_missing = False |
 |:----------------|------------------------:|-------------------------:|
 | AC              |              0.00416023 |               0          |
@@ -139,7 +154,30 @@ The table displays the distribution of `'league'` when `'monsterkillsownjungle'`
 | LAS             |              0.0343516  |               0          |
 | LCK             |              0.0572923  |               0          |
 | LCKC            |              0.0607393  |               0          |
-...
+| LCO             |              0.0185427  |               0          |
+| LCS             |              0.0228218  |               0          |
+| LDL             |              0          |               0.406183   |
+| LEC             |              0.0349459  |               0          |
+| LFL             |              0.0281707  |               0          |
+| LFL2            |              0.0204446  |               0          |
+| LIT             |              0.0177107  |               0          |
+| LJL             |              0.0175918  |               0          |
+| LLA             |              0.025318   |               0          |
+| LPL             |              0          |               0.515457   |
+| LPLOL           |              0.018305   |               0          |
+| LRN             |              0.0108166  |               0          |
+| LRS             |              0.0121241  |               0          |
+| LVP SL          |              0.028765   |               0          |
+| MSI             |              0          |               0.0560748  |
+| NACL            |              0.0580055  |               0          |
+| NEXO            |              0.019137   |               0          |
+| NLC             |              0.0247236  |               0          |
+| NLC Aurora Open |              0.0091525  |               0          |
+| PCS             |              0.0353025  |               0          |
+| PRM             |              0.0286461  |               0          |
+| PRMP            |              0.0159277  |               0          |
+| TCL             |              0.0215143  |               0          |
+| TSC             |              0.0127184  |               0          |
 | UL              |              0.0188993  |               0          |
 | USP             |              0.00451682 |               0          |
 | VCS             |              0.0299536  |               0          |
