@@ -18,28 +18,30 @@ The dataset contains information spanning various game matches within the 2024 y
 
 | **Column**      | **Description** |
 | ----------- | ----------- |
-| {{gameid}}      | unique identifier for each game played      |
-| {{league}}   | the professional league a team belongs to/league tournament in which match happened        |
-| {{gamelength}}      | the length of a game in minutes |
-| {{kills}}      | the number of enemy champions a player or team eliminated in match |
-| {{deaths}}      | the amount of times a player or team was elimated by enemy champions |
-| {{assists}}      | the number of assists given to player or team (ie. when they helped eliminate enemy champion without getting kill recognition |
-| {{earnedgold}}      | the amount of gold a player or team earns in match |
-| {{monsterkills}}      | the amount of monsters a player or team eliminate in match |
-| {{monsterkillsownjungle}}      | the amount of monsters elimated by player or team in their own jungle |
+| `'gameid'`      | unique identifier for each game played      |
+| `'league'`  | the professional league a team belongs to/league tournament in which match happened        |
+| `'gamelength'`      | the length of a game in minutes |
+| `'kills'`      | the number of enemy champions a player or team eliminated in match |
+| `'deaths'`      | the amount of times a player or team was elimated by enemy champions |
+| `'assists'`     | the number of assists given to player or team (ie. when they helped eliminate enemy champion without getting kill recognition |
+| `'earnedgold'`      | the amount of gold a player or team earns in match |
+| `'monsterkills'`      | the amount of monsters a player or team eliminate in match |
+| `'monsterkillsownjungle'`      | the amount of monsters elimated by player or team in their own jungle |
 
 ## Data Cleaning and Exploratory Data Analysis
 For convinence, only the 'gameid', 'league', 'gamelength', 'kills', 'deaths', 'assists', 'earnedgold', 'monsterkills', and 'monsterkillsownjungle' columns were kept. Further, to prevent double counting values for both players and teams in the KDA analysis, rows where 'position' was team (row was an aggregate of a team's performance for each player column) were filtered out. To assist in the permutation test this project and staying true to my central question, two columns were created: 'tier' and 'KDA'. 
 
-'tier' was assigned to each team using a helper function based on official league and tournament information found on Wikipedia and the Internet. Any team that didn't have an associated league/tournament identifier was placed in Tier A, or the ameteur league for purposes of a fair data analysis.
+`'tier'` was assigned to each team using a helper function based on official league and tournament information found on Wikipedia and the Internet. Any team that didn't have an associated league/tournament identifier was placed in Tier A, or the ameteur league for purposes of a fair data analysis.`'KDA'` was created by normalizing the kills, deaths, and assists columns and plugging those values into the KDA equation to get the normalized KDA across all players. The normalization was necessary due to factors like game length that can impact the values of the kills, deaths, and assists columns for longer game durations.
 
-'KDA' was created by normalizing the kills, deaths, and assists 
+The resulting dataframe has 11 columns and n rows.
 
 
 | **Column**      | **Description** |
 | ----------- | ----------- |
-| 'tier'      | the skill level group a team is placed in, is used for tournament play      |
-| 'KDA'   | the aggregate perfomance measured calculated using player kills, deaths, and assists        |
+| `'tier'`      | the skill level group a team is placed in, is used for tournament play      |
+| `'KDA'`   | the aggregate perfomance measured calculated using player kills, deaths, and assists        |
+
+I decided to perform 
 
 ## Assessment of Missingness
 
