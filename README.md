@@ -9,15 +9,37 @@ League of Legends (LoL), otherwise known as League, is an online multiplayer bat
 The dataset contains gameplay statistics spanning across various matches, detailing both player and team info across categories such as champion selection, overall performance, and overall progress towards securing a game win. While distinct from each other, these categories provide detailed context as to how player and team in-game choices and dynamics can vary and drastically impact overall results.
 
 In LoL, kills, deaths, and assists (KDA) is a significant statistic in measuring player performance in-match. As calculated by the equation below, understanding KDA is essential to evaluating at a player's overall contributions to team results, with a higher KDA meaning a more impactful performance (players have a higher kills and assists ratio to deaths). With KDA varying across player roles, KDA plays a key part in analyzing team strategy, allowing us to get a glimpse into how effectively maxmizing player roles can lead to positive team outcomes.
-$$KDA = (Kills + Assists) / Deaths$$
+                                                                                                  $$KDA = (Kills + Assists) / Deaths$$
 
 I will be focusing on answering the central question: **How effective is KDA as a measure of player and team performance in-game?**. While KDA itself is a good baseline metric, with other factors such as skill of an overall league, and other metrics of performance such as dpm, KDA's effectivenss as a metric might not capture all factors that could lead to a team winning/losing. In conjunction with the predictive model used, insights gained can be used to optimize team strategy and decision making, leading to consistent and positive performance across games.
 
 ### Column Overview
 The dataset contains information spanning various game matches within the 2024 year. In this dataset specifically, n amount of rows. The most relevant columns featured for my data analysis are explained below:
 
+| Column      | Description |
+| ----------- | ----------- |
+| 'gameid'      | unique identifier for each game played      |
+| 'league'   | the professional league a team belongs to/league tournament in which match happened        |
+| 'gamelength'      | the length of a game in minutes |
+| 'kills'      | the number of enemy champions a player or team eliminated in match |
+| 'deaths'      | the amount of times a player or team was elimated by enemy champions |
+| 'assists'      | the number of assists given to player or team (ie. when they helped eliminate enemy champion without getting kill recognition |
+| 'earnedgold'      | the amount of gold a player or team earns in match |
+| 'monsterkills'      | the amount of monsters a player or team eliminate in match |
+| 'monsterkillsownjungle'      | the amount of monsters elimated by player or team in their own jungle |
 
 ## Data Cleaning and Exploratory Data Analysis
+For convinence, only the 'gameid', 'league', 'gamelength', 'kills', 'deaths', 'assists', 'earnedgold', 'monsterkills', and 'monsterkillsownjungle' columns were kept. Further, to prevent double counting values for both players and teams in the KDA analysis, rows where 'position' was team (row was an aggregate of a team's performance for each player column) were filtered out. To assist in the permutation test this project and staying true to my central question, two columns were created: 'tier' and 'KDA'. 
+
+'tier' was assigned to each team using a helper function based on official league and tournament information found on Wikipedia and the Internet. Any team that didn't have an associated league/tournament identifier was placed in Tier A, or the ameteur league for purposes of a fair data analysis.
+
+'KDA' was created by normalizing the kills, deaths, and assists 
+
+
+| Column      | Description |
+| ----------- | ----------- |
+| 'tier'      | the skill level group a team is placed in, is used for tournament play      |
+| 'KDA'   | the aggregate perfomance measured calculated using player kills, deaths, and assists        |
 
 ## Assessment of Missingness
 
