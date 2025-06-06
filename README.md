@@ -54,6 +54,13 @@ The resulting dataframe has 13 columns and 90840 rows.
 
 I decided to perform a univariate analysis on player dpm.
 
+<iframe
+  src="assets/q2aplot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 The overall distribution is slightly right-skewed, suggesting that players in their game strategy are more likely to either use champions that on average deal a lower dpm, or utilize their champions and items to provide more support as opposed to dealing damage.
 
 I also decided to perform a univariate analysis on player earned gold.
