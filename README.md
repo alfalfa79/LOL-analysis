@@ -9,7 +9,9 @@ League of Legends (LoL), otherwise known as League, is an online multiplayer bat
 The dataset contains gameplay statistics spanning across various matches, detailing both player and team info across categories such as champion selection, overall performance, and overall progress towards securing a game win. While distinct from each other, these categories provide detailed context as to how player and team in-game choices and dynamics can vary and drastically impact overall results.
 
 In LoL, kills, deaths, and assists (KDA) is a significant statistic in measuring player performance in-match. As calculated by the equation below, understanding KDA is essential to evaluating at a player's overall contributions to team results, with a higher KDA meaning a more impactful performance (players have a higher kills and assists ratio to deaths). With KDA varying across player roles, KDA plays a key part in analyzing team strategy, allowing us to get a glimpse into how effectively maxmizing player roles can lead to positive team outcomes.
-                                                                                                  $$KDA = (Kills + Assists) / Deaths$$
+                                                                                                  
+                                                                                                  
+                              $$KDA = (Kills + Assists) / Deaths$$
 
 I will be focusing on answering the central question: **How effective is KDA as a measure of player and team performance in-game?**. While KDA itself is a good baseline metric, with other factors such as skill of an overall league, and other metrics of performance such as dpm, KDA's effectivenss as a metric might not capture all factors that could lead to a team winning/losing. In conjunction with the predictive model used, insights gained can be used to optimize team strategy and decision making, leading to consistent and positive performance across games.
 
@@ -108,26 +110,13 @@ I believe that `'killsat25'`, `'assistsat25'`, `'deathssat25'`, `'opp_killsat25'
 ### Missingness Dependency
 This section will focus on testing if the missingness of the `'monsterkillsownjungle'` column is dependent on other columns. The two other columns used were `'league'` and `'minionkills'`. For `'league'`, total variation distance (TVD) was used as the test statistic, while for `'minionkills'` the KS statistic was used. Both permutation tests performed were tested at the 0.05 significance level.
 
-First analysis compared `'monsterkillsownjungle'` and `'league'`, and I sought to find out whether or not 
-the missingness of `'monsterkillsownjungle'` values depending on league. The hypotheses tested were as follows:
+First analysis compared `'monsterkillsownjungle'` and `'league'`, and I sought to determine that the missingness of `'monsterkillsownjungle'` values depends on league. The hypotheses tested were as follows:
 
 **Null Hypothesis**: the distribution of `'league'` when `'monsterkillsownjungle'` is missing is the same as the distribution of league when `'monsterkillsownjungle'` is not missing.
 
 **Alt Hypothesis**: the distribution of `'league'` when `'monsterkillsownjungle'` is missing is NOT the same as the distribution of league when `'monsterkillsownjungle'` is not missing.
 
 The table displays the distribution of `'league'` when `'monsterkillsownjungle'` is missing vs not missing.
-
-gameid	datacompleteness	url	league	...	norm_kills	norm_deaths	norm_assists	kda
-0	LOLTMNT03_179647	complete	NaN	LFL2	...	-0.68	-0.55	-0.78	2.65
-1	LOLTMNT03_179647	complete	NaN	LFL2	...	-0.84	-0.39	-0.78	4.14
-2	LOLTMNT03_179647	complete	NaN	LFL2	...	-0.68	-0.55	-0.85	2.78
-...	...	...	...	...	...	...	...	...	...
-62133	LOLTMNT06_121570	complete	NaN	LIT	...	-0.68	-0.71	0.05	0.89
-62134	LOLTMNT06_121570	complete	NaN	LIT	...	-0.06	2.19	-0.02	-0.04
-62135	LOLTMNT06_121570	complete	NaN	LIT	...	1.95	-0.07	1.85	-54.87
-62136 rows × 166 columns
-
-
 
 | league          |   mkills_missing = True |   mkills_missing = False |
 |:----------------|------------------------:|-------------------------:|
@@ -185,7 +174,36 @@ gameid	datacompleteness	url	league	...	norm_kills	norm_deaths	norm_assists	kda
 
 After performing a permutation test calculating the TVD, the observed test statistic is **0.9906542056074766**, with a p-value of 0. The following plot shows the empirical distribution of the TVD for the test.
 
+<iframe
+  src="assets/q3aplot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Since the p-value is less than the 0.05 significance level we reject the null hypothesis. This means that `'monsterkillsownjungle'` depends on `'league'`.
+
+The second analysis compared `'monsterkillsownjungle'` and `'minionkills'`, and I sought to determine that the missingness of `'monsterkillsownjungle'` values doesn't depend on `'minionkills'`. The hypotheses tested were as follows:
+
+**Null Hypothesis**: the distribution of `'miniokills'` when `'monsterkillsownjungle'` is missing is the same as the distribution of league when `'monsterkillsownjungle'` is not missing.
+
+**Alt Hypothesis**: the distribution of `'league'` when `'monsterkillsownjungle'` is missing is NOT the same as the distribution of league when `'monsterkillsownjungle'` is not missing.
+
+After performing a permutation test calculating the KS statistic, the observed test statistic is **0.041330767154286824**, with a p-value of 0. The following plot shows the empirical distribution of the KS Statistic for the test.
+
+<iframe
+  src="assets/q3bplot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Since the p-value is greater than the 0.05 significance level we fail to reject the null hypothesis. This means that `'monsterkillsownjungle'` doesn't depend on `'earnedgold'`.
+
 ## Hypothesis Testing
+In this section, I focused on analyzing the KDA statistic itself across tiers, and whether there is a correlation between the tier level and KDA. This hypothesis was fueled by a common assumption across levels within both sports and esports: 
+
+
 
 ## Framing a Prediction Problem
 
