@@ -65,11 +65,16 @@ The overall distribution is slightly right-skewed, suggesting that players in th
 
 I also decided to perform a univariate analysis on player earned gold.
 
+<iframe
+  src="assets/q2bplot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 The overall distribution is slightly right-skewed but overall balancedd, suggesting that in various game scenarios, players and teams are collecting "normal" amounts of gold across various game scenarios. In other words, no player/team is necessarily at an advantage/disadvantage when it comes to game farming.
 
 Next, I decide to perform a bivariate analysis on both the relationship between league and team kills, and league and team deaths.
-
-
 
 ## Assessment of Missingness
 
