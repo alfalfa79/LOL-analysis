@@ -16,7 +16,7 @@ I will be focusing on answering the central question: **How effective is KDA as 
 ### Column Overview
 The dataset contains information spanning various game matches within the 2024 year. In this dataset specifically, n amount of rows. The most relevant columns featured for my data analysis are explained below:
 
-| Column      | Description |
+| **Column**      | **Description** |
 | ----------- | ----------- |
 | 'gameid'      | unique identifier for each game played      |
 | 'league'   | the professional league a team belongs to/league tournament in which match happened        |
@@ -36,7 +36,7 @@ For convinence, only the 'gameid', 'league', 'gamelength', 'kills', 'deaths', 'a
 'KDA' was created by normalizing the kills, deaths, and assists 
 
 
-| Column      | Description |
+| **Column**      | **Description** |
 | ----------- | ----------- |
 | 'tier'      | the skill level group a team is placed in, is used for tournament play      |
 | 'KDA'   | the aggregate perfomance measured calculated using player kills, deaths, and assists        |
