@@ -54,7 +54,15 @@ The resulting dataframe has 13 columns and 90840 rows.
 
 I decided to perform a univariate analysis on player dpm.
 
-I also decided to performa univariate analysis on player earned gold.
+The overall distribution is slightly right-skewed, suggesting that players in their game strategy are more likely to either use champions that on average deal a lower dpm, or utilize their champions and items to provide more support as opposed to dealing damage.
+
+I also decided to perform a univariate analysis on player earned gold.
+
+The overall distribution is slightly right-skewed but overall balancedd, suggesting that in various game scenarios, players and teams are collecting "normal" amounts of gold across various game scenarios. In other words, no player/team is necessarily at an advantage/disadvantage when it comes to game farming.
+
+Next, I decide to perform a bivariate analysis on both the relationship between league and team kills, and league and team deaths.
+
+
 
 ## Assessment of Missingness
 
