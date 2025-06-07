@@ -55,44 +55,37 @@ The resulting dataframe has 13 columns and 90840 rows.
 
 ### Univariate Analysis
 I decided to perform a univariate analysis on player dpm.
-
 <iframe
   src="assets/q2aplot.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-
 The overall distribution is slightly right-skewed, suggesting that players in their game strategy are more likely to either use champions that on average deal a lower dpm, or utilize their champions and items to provide more support as opposed to dealing damage.
 
 I also decided to perform a univariate analysis on player earned gold.
-
 <iframe
   src="assets/q2bplot.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-
 The overall distribution is slightly right-skewed but overall balancedd, suggesting that in various game scenarios, players and teams are collecting "normal" amounts of gold across various game scenarios. In other words, no player/team is necessarily at an advantage/disadvantage when it comes to game farming.
 
 ### Bivariate Analysis
 Next, I decide to perform a bivariate analysis on both the relationship between league and team kills, and league and team deaths. As shown by the scatterplots below, the relationship between kills and deaths are similar across leagues, signifying that both counts are proportional to each other per league.
-
 <iframe
   src="assets/q2cplot.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-
 <iframe
   src="assets/q2dplot.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-
 ### Aggregate Analysis
 Lastly I performed an aggregate analysis on game statstics in my cleaned dataframe as grouped by tier. When taking the average of the game statistics, there are discreptancies across tier level. While columns like `'kda'` seems to inc as tier level inc, the other columns in this table don't seem to have a clear relationship to tier.
 
@@ -173,14 +166,12 @@ The table displays the distribution of `'league'` when `'monsterkillsownjungle'`
 | WLDs            |              0.0141448  |               0.00934579 |
 
 After performing a permutation test calculating the TVD, the observed test statistic is **0.9906542056074766**, with a p-value of 0. The following plot shows the empirical distribution of the TVD for the test.
-
 <iframe
   src="assets/q3aplot.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-
 Since the p-value is less than the 0.05 significance level we reject the null hypothesis. This means that `'monsterkillsownjungle'` depends on `'league'`.
 
 The second analysis compared `'monsterkillsownjungle'` and `'minionkills'`, and I sought to determine that the missingness of `'monsterkillsownjungle'` values doesn't depend on `'minionkills'`. The hypotheses tested were as follows:
@@ -190,14 +181,12 @@ The second analysis compared `'monsterkillsownjungle'` and `'minionkills'`, and 
 **Alt Hypothesis**: the distribution of `'league'` when `'monsterkillsownjungle'` is missing is NOT the same as the distribution of league when `'monsterkillsownjungle'` is not missing.
 
 After performing a permutation test calculating the KS statistic, the observed test statistic is **0.041330767154286824**, with a p-value of 1. The following plot shows the empirical distribution of the KS Statistic for the test.
-
 <iframe
   src="assets/q3bplot.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-
 Since the p-value is greater than the 0.05 significance level we fail to reject the null hypothesis. This means that `'monsterkillsownjungle'` doesn't depend on `'earnedgold'`.
 
 ## Hypothesis Testing
@@ -237,8 +226,20 @@ I utilized a Linear Regression model as a baseline model utlizing the features k
 
 Further, I standardized kills, deaths, and assists across all players prior to model execution.
 
-The results for this model was a mean RMSE of **200.04842567375567** and an R2 value of **0.47425528382015764**. Given that I expected this model to perform with an R2 of at least 0.60 (indicating at least a slightly strong correlation between the features and DPM), this model isn't good in terms of performing at this expectation.
+The results for this model was a mean RMSE of **200.04842567375567** and a mean R2 value of **0.47425528382015764** across the test sets. Given that I expected this model to perform with an R2 of at least 0.60 (indicating at least a slightly strong correlation between the features and DPM), this model isn't good in terms of performing to this expectation.
 
 ## Final Model
+My final model incorporated all the features present in the baseline model in addition to the `'monsterkills'` and `'earnedgold'` features. Including `'monsterkills'` can provide better and more well rounded context for the impact of DPM, as including both of these features addresses both champion and monster fatalities. Earning gold in the game comes from minion and neutral monster kills, and from player assists and champion kills, so including `'earnedgold'` can also add to analyzing the impact of DPM on player performance.
+
+I utilized a Polynomial Regression model as my final model, translated into code as utilizing both Polynomial Features and Linear Regression. To select the best hyperparameters I used GridSearchCSV, which found that using n polynomial features can output the highest R2 and the lowest RMSE.
+
+The model performed with an RMSE of and a mean R2 value of n across the test sets. This is an improvement from the baseline
 
 ## Fairness Analysis
+With the results of the final model, I wanted to know if the performance of the model will perform differently across various game lengths (longer vs shorter games). The groups are defined as longer games (gamelength > 2000) and shorter games (gamelength < 2000). I will still be utilizing R2 as my evaluation metric, and my hypotheses are as follows:
+
+**Null Hypothesis**: model is fair. R2 for shorter games and longer games are roughly the same.
+
+**Alternative Hypothesis**: model is unfair. R2 for shorter games and longer games are NOT the same.
+
+These hypoetheses were evaluated at the 0.05 significance level. The results of the permutation test are shown below.
