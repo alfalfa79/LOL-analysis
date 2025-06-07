@@ -206,14 +206,12 @@ I analyzed this at the 0.05 significance level, and to measure correlation, the 
 | T1      | 4      |
 
 I've generated a histogram below showing the distribution of the hypothesis test results.
-
 <iframe
   src="assets/q4plot.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-
 With the observed Spearman R of 0, and a calculated p-value of **1.0**, we fail to reject the hypothesis at the 0.05 significance level. In other words the tier level of any given league does not correspond to a higher KDA for higher tier leagues, and vice versa, a lower KDA for lower tier leagues. As such, it can be concluded that higher tier leagues don't necessarily outperform lower-tier on the metric of KDA.
 
 ## Framing a Prediction Problem
@@ -231,9 +229,9 @@ The results for this model was a mean RMSE of **200.04842567375567** and a mean 
 ## Final Model
 My final model incorporated all the features present in the baseline model in addition to the `'monsterkills'` and `'earnedgold'` features. Including `'monsterkills'` can provide better and more well rounded context for the impact of DPM, as including both of these features addresses both champion and monster fatalities. Earning gold in the game comes from minion and neutral monster kills, and from player assists and champion kills, so including `'earnedgold'` can also add to analyzing the impact of DPM on player performance.
 
-I utilized a Polynomial Regression model as my final model, translated into code as utilizing both Polynomial Features and Linear Regression. To select the best hyperparameters I used GridSearchCSV, which found that using n polynomial features can output the highest R2 and the lowest RMSE.
+I utilized a Polynomial Regression model as my final model, translated into code as utilizing both Polynomial Features and Linear Regression. To select the best hyperparameters I used GridSearchCSV, which found that using 5 polynomial features can output the highest R2.
 
-The model performed with an RMSE of and a mean R2 value of n across the test sets. This is an improvement from the baseline
+The model performed with a mean R2 value of **0.6469389173806535** across the test sets. The higher R2 shows an improvement from the baseline model
 
 ## Fairness Analysis
 With the results of the final model, I wanted to know if the performance of the model will perform differently across various game lengths (longer vs shorter games). The groups are defined as longer games (gamelength > 2000) and shorter games (gamelength < 2000). I will still be utilizing R2 as my evaluation metric, and my hypotheses are as follows:
@@ -242,4 +240,11 @@ With the results of the final model, I wanted to know if the performance of the 
 
 **Alternative Hypothesis**: model is unfair. R2 for shorter games and longer games are NOT the same.
 
-These hypoetheses were evaluated at the 0.05 significance level. The results of the permutation test are shown below.
+These hypotheses were evaluated at the 0.05 significance level. The results of the permutation test are shown below.
+<iframe
+  src="assets/q8plot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+The observed TVD statistic was **0.005479599342930186** and the resulting p-value was **0.988**. We therefore fail to reject the null hypothesis, concluding that the model is fair across both short and long games.
