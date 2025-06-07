@@ -216,9 +216,28 @@ I analyzed this at the 0.05 significance level, and to measure correlation, the 
 | T2      | 3      |
 | T1      | 4      |
 
+I've generated a histogram below showing the distribution of the hypothesis test results.
+
+<iframe
+  src="assets/q4plot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+With the observed Spearman R of 0, and a calculated p-value of **1.0**, we fail to reject the hypothesis at the 0.05 significance level. In other words the tier level of any given league does not correspond to a higher KDA for higher tier leagues, and vice versa, a lower KDA for lower tier leagues. As such, it can be concluded that higher tier leagues don't necessarily outperform lower-tier on the metric of KDA.
+
 ## Framing a Prediction Problem
+Our KDA analysis provided a good baseline analysis into the relationships between key in-game statistics, and their overall disparities (or in the case of the hypothesis test results, the lack thereof) between leagues. With this context
+
+In order to make an analysis, a regression model can be used, a key tool to analyze numerical data. My prediction problem focuses around the `'dpm'` column: *can we predict DPM using other variables, such kills, deaths, and assists?* The information known at the time of prediction are player kills, deaths, and assists, monsterkills, and earned gold, and prediction accuracy will be measured using the r2 and RMSE value (both standard and easy to understand metrics commonly used in regression models).
 
 ## Baseline Model
+I utilized a Linear Regression model as a baseline model utlizing the features kills, deaths, and assists. I utilized `'kills'` (quantitative) as the amount of kills can be reflected on how much damage a player deals. Utilizing `'deaths'` (quantitative) can provide an inverse explaination of how much DPM is dealt, as a higher DPM can signify a more offensive player position and indicating higher player skill, leading to less player death due to how much damage is dealt compared to how much damage is taken. Lastly, `'assists'` (quantitative) was utilized to take into account players in support and carry roles, dealing more damage from afar.
+
+Further, I standardized kills, deaths, and assists across all players prior to model execution.
+
+The results for this model was a mean RMSE of **200.04842567375567** and an R2 value of **0.47425528382015764**. Given that I expected this model to perform with an R2 of at least 0.60 (indicating at least a slightly strong correlation between the features and DPM), this model isn't good in terms of performing at this expectation.
 
 ## Final Model
 
